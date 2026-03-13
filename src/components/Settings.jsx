@@ -47,7 +47,7 @@ const Settings = ({ user, onBack, onSave }) => {
       formData.append('image', profileImageFile);
 
       const token = localStorage.getItem('token');
-      const response = await fetch(`https://its-show-time-backend-production.up.railway.app/api/upload/profile/${user.id}`, {
+      const response = await fetch(`https://show-time-backend-production.up.railway.app/api/upload/profile/${user.id}`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -60,7 +60,7 @@ const Settings = ({ user, onBack, onSave }) => {
       }
 
       const data = await response.json();
-      return `https://its-show-time-backend-production.up.railway.app${data.imageUrl}`;
+      return `https://show-time-backend-production.up.railway.app${data.imageUrl}`;
     } catch (error) {
       console.error('Error uploading image:', error);
       toast.error('Failed to upload profile image');
@@ -86,7 +86,7 @@ const Settings = ({ user, onBack, onSave }) => {
     // Update user profile via API
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`https://its-show-time-backend-production.up.railway.app/api/auth/user/${user.id}`, {
+      const response = await fetch(`https://show-time-backend-production.up.railway.app/api/auth/user/${user.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

@@ -17,7 +17,7 @@ const ZoneSelection = ({ event, selectedDate, onContinue }) => {
       }
 
       try {
-        const url = `https://its-show-time-backend-production.up.railway.app/api/bookings/event/${event.id}/zone-availability?eventDateId=${selectedDate.id}`;
+        const url = `https://show-time-backend-production.up.railway.app/api/bookings/event/${event.id}/zone-availability?eventDateId=${selectedDate.id}`;
         const token = localStorage.getItem('token');
         const response = await fetch(url, {
           headers: { 'Authorization': `Bearer ${token}` }

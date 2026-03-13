@@ -89,9 +89,11 @@ const Register = ({ onAuthSuccess }) => {
   };
 
   // Backend registration and login
+  const API_BASE = 'https://show-time-backend-production.up.railway.app';
+
   const backendRegisterAndLogin = async (payload) => {
     // 1. Register
-    const res = await fetch('https://its-show-time-backend-production.up.railway.app/api/auth/register', {
+    const res = await fetch(`${API_BASE}/api/auth/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
@@ -105,7 +107,7 @@ const Register = ({ onAuthSuccess }) => {
     }
 
     // 2. Login to get token
-    const loginRes = await fetch('https://its-show-time-backend-production.up.railway.app/api/auth/login', {
+    const loginRes = await fetch(`${API_BASE}/api/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -132,7 +134,7 @@ const Register = ({ onAuthSuccess }) => {
       const user = result.user;
 
       // 1. Check if user exists using google-login (trusting email)
-      const loginRes = await fetch('https://its-show-time-backend-production.up.railway.app/api/auth/google-login', {
+      const loginRes = await fetch(`${API_BASE}/api/auth/google-login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: user.email, uid: user.uid })
@@ -207,7 +209,7 @@ const Register = ({ onAuthSuccess }) => {
     try {
       if (!confirmationResult) {
         // Step 1: Send OTP via Backend
-        const res = await fetch('https://its-show-time-backend-production.up.railway.app/api/auth/send-sms-otp', {
+        const res = await fetch(`${API_BASE}/api/auth/send-sms-otp`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ phone: formData.identifier })
@@ -224,7 +226,7 @@ const Register = ({ onAuthSuccess }) => {
         setSubmitting(false);
       } else {
         // Step 2: Verify OTP via Backend
-        const res = await fetch('https://its-show-time-backend-production.up.railway.app/api/auth/verify-sms-otp', {
+        const res = await fetch(`${API_BASE}/api/auth/verify-sms-otp`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ phone: formData.identifier, otp: formData.otp })
@@ -243,7 +245,7 @@ const Register = ({ onAuthSuccess }) => {
         // For now, using phone number as password.
         const loginPayload = { email: dummyEmail, password: formData.identifier };
 
-        let loginRes = await fetch('https://its-show-time-backend-production.up.railway.app/api/auth/login', {
+        let loginRes = await fetch(`${API_BASE}/api/auth/login`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(loginPayload),
@@ -317,7 +319,7 @@ const Register = ({ onAuthSuccess }) => {
 
     try {
       // Step 0: Check if email already exists in Backend
-      const checkRes = await fetch('https://its-show-time-backend-production.up.railway.app/api/auth/check-email', {
+      const checkRes = await fetch(`${API_BASE}/api/auth/check-email`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: formData.identifier })
@@ -395,7 +397,7 @@ const Register = ({ onAuthSuccess }) => {
 
           if (pendingData.email === email) {
             // Register with backend
-            const response = await fetch('https://its-show-time-backend-production.up.railway.app/api/auth/register', {
+            const response = await fetch(`${API_BASE}/api/auth/register`, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({
@@ -411,7 +413,7 @@ const Register = ({ onAuthSuccess }) => {
 
             if (response.status === 409) {
               // User already exists, try to login
-              const loginRes = await fetch('https://its-show-time-backend-production.up.railway.app/api/auth/login', {
+              const loginRes = await fetch(`${API_BASE}/api/auth/login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -431,7 +433,7 @@ const Register = ({ onAuthSuccess }) => {
 
             if (response.ok) {
               // Login after registration
-              const loginRes = await fetch('https://its-show-time-backend-production.up.railway.app/api/auth/login', {
+              const loginRes = await fetch(`${API_BASE}/api/auth/login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

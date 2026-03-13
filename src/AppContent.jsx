@@ -82,10 +82,12 @@ const AppContent = () => {
   const [wishlist, setWishlist] = useState([]);
 
   // Load wishlist from backend
+  const API_BASE = 'https://show-time-backend-production.up.railway.app';
+
   useEffect(() => {
     if (user?.id) {
       const token = localStorage.getItem('token');
-      fetch(`https://its-show-time-backend-production.up.railway.app/api/wishlist/${user.id}`, {
+      fetch(`${API_BASE}/api/wishlist/${user.id}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -135,7 +137,7 @@ const AppContent = () => {
   const handleEventBookNow = async (event) => {
     try {
       // Fetch full event details if not already complete
-      const res = await fetch(`https://its-show-time-backend-production.up.railway.app/api/events/${event.id}`);
+      const res = await fetch(`${API_BASE}/api/events/${event.id}`);
       if (!res.ok) {
         throw new Error('Failed to load event details');
       }
@@ -265,7 +267,7 @@ const AppContent = () => {
       let response;
       if (bookingType === 'MOVIE') {
         const token = localStorage.getItem('token');
-        response = await fetch('https://its-show-time-backend-production.up.railway.app/api/bookings/movie', {
+        response = await fetch(`${API_BASE}/api/bookings/movie`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -281,7 +283,7 @@ const AppContent = () => {
         });
       } else {
         const token = localStorage.getItem('token');
-        response = await fetch('https://its-show-time-backend-production.up.railway.app/api/bookings/event', {
+        response = await fetch(`${API_BASE}/api/bookings/event`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -403,7 +405,7 @@ const AppContent = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch('https://its-show-time-backend-production.up.railway.app/api/wishlist/toggle', {
+      const res = await fetch(`${API_BASE}/api/wishlist/toggle`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -429,7 +431,7 @@ const AppContent = () => {
 
     try {
       const token = localStorage.getItem('token');
-      await fetch(`https://its-show-time-backend-production.up.railway.app/api/wishlist/${user.id}/${type}/${id}`, {
+      await fetch(`${API_BASE}/api/wishlist/${user.id}/${type}/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`

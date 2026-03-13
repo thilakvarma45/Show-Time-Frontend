@@ -71,7 +71,7 @@ const MovieDetails = ({ onBookNow }) => {
   const loadRatings = async (movieId) => {
     try {
       // 1. Get average rating (public)
-      const summaryRes = await fetch(`https://its-show-time-backend-production.up.railway.app/api/ratings/movie/${movieId}`);
+      const summaryRes = await fetch(`https://show-time-backend-production.up.railway.app/api/ratings/movie/${movieId}`);
       if (summaryRes.ok) {
         const summary = await summaryRes.json();
         setAverageRating(summary.averageRating);
@@ -81,7 +81,7 @@ const MovieDetails = ({ onBookNow }) => {
       // 2. Get user's personal rating (if logged in)
       const token = localStorage.getItem('token');
       if (token) {
-        const userRes = await fetch(`https://its-show-time-backend-production.up.railway.app/api/ratings/movie/${movieId}/user`, {
+        const userRes = await fetch(`https://show-time-backend-production.up.railway.app/api/ratings/movie/${movieId}/user`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         if (userRes.ok) {
@@ -103,7 +103,7 @@ const MovieDetails = ({ onBookNow }) => {
   const loadReviewsList = async () => {
     if (!movie?.id) return;
     try {
-      const res = await fetch(`https://its-show-time-backend-production.up.railway.app/api/ratings/movie/${movie.id}/reviews`);
+      const res = await fetch(`https://show-time-backend-production.up.railway.app/api/ratings/movie/${movie.id}/reviews`);
       if (res.ok) {
         const data = await res.json();
         setReviews(data);
@@ -133,7 +133,7 @@ const MovieDetails = ({ onBookNow }) => {
 
     setIsRatingLoading(true);
     try {
-      const res = await fetch('https://its-show-time-backend-production.up.railway.app/api/ratings', {
+      const res = await fetch('https://show-time-backend-production.up.railway.app/api/ratings', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -173,7 +173,7 @@ const MovieDetails = ({ onBookNow }) => {
 
       try {
         // Check if this movie has any shows scheduled
-        const res = await fetch('https://its-show-time-backend-production.up.railway.app/api/shows/summary');
+      const res = await fetch('https://show-time-backend-production.up.railway.app/api/shows/summary');
         if (!res.ok) {
           throw new Error('Failed to load shows');
         }

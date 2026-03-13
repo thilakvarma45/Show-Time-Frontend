@@ -28,7 +28,7 @@ const MovieListings = ({ onSelectShow, owner }) => {
       setError(null);
       try {
         const token = localStorage.getItem('token');
-        const res = await fetch(`https://its-show-time-backend-production.up.railway.app/api/shows/summary?ownerId=${owner.id}`, {
+        const res = await fetch(`https://show-time-backend-production.up.railway.app/api/shows/summary?ownerId=${owner.id}`, {
           headers: { 'Authorization': `Bearer ${token}` }
         }); // summary list per tmdbMovieId filtered by owner
         if (!res.ok) {
@@ -84,7 +84,7 @@ const MovieListings = ({ onSelectShow, owner }) => {
       }
       try {
         const token = localStorage.getItem('token');
-        const res = await fetch(`https://its-show-time-backend-production.up.railway.app/api/events/owner/${owner.id}`, {
+        const res = await fetch(`https://show-time-backend-production.up.railway.app/api/events/owner/${owner.id}`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         if (!res.ok) {
@@ -139,7 +139,7 @@ const MovieListings = ({ onSelectShow, owner }) => {
       // endpoint based on type
       let url = '';
       if (item.type === 'movie') {
-        url = `https://its-show-time-backend-production.up.railway.app/api/shows/movie/${item.tmdbMovieId}?ownerId=${owner.id}`;
+        url = `https://show-time-backend-production.up.railway.app/api/shows/movie/${item.tmdbMovieId}?ownerId=${owner.id}`;
       } else {
         // For events, we might need a different endpoint, e.g. /api/events/{id}
         // Assuming /api/events/{id}?ownerId=... for now or just alert
