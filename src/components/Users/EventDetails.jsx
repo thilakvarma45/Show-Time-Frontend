@@ -43,7 +43,7 @@ const EventDetails = ({ onBookNow }) => {
     const loadRatings = async (eventId) => {
         try {
             // 1. Get average rating (public)
-            const summaryRes = await fetch(`https://its-show-time-backend-production.up.railway.app/api/ratings/event/${eventId}`);
+            const summaryRes = await fetch(`https://show-time-backend-production.up.railway.app/api/ratings/event/${eventId}`);
             if (summaryRes.ok) {
                 const summary = await summaryRes.json();
                 setAverageRating(summary.averageRating);
@@ -53,7 +53,7 @@ const EventDetails = ({ onBookNow }) => {
             // 2. Get user's personal rating (if logged in)
             const token = localStorage.getItem('token');
             if (token) {
-                const userRes = await fetch(`https://its-show-time-backend-production.up.railway.app/api/ratings/event/${eventId}/user`, {
+                const userRes = await fetch(`https://show-time-backend-production.up.railway.app/api/ratings/event/${eventId}/user`, {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
                 if (userRes.ok) {
@@ -75,7 +75,7 @@ const EventDetails = ({ onBookNow }) => {
     const loadReviewsList = async () => {
         if (!event?.id) return;
         try {
-            const res = await fetch(`https://its-show-time-backend-production.up.railway.app/api/ratings/event/${event.id}/reviews`);
+            const res = await fetch(`https://show-time-backend-production.up.railway.app/api/ratings/event/${event.id}/reviews`);
             if (res.ok) {
                 const data = await res.json();
                 setReviews(data);
@@ -105,7 +105,7 @@ const EventDetails = ({ onBookNow }) => {
 
         setIsRatingLoading(true);
         try {
-            const res = await fetch('https://its-show-time-backend-production.up.railway.app/api/ratings', {
+            const res = await fetch('https://show-time-backend-production.up.railway.app/api/ratings', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -144,7 +144,7 @@ const EventDetails = ({ onBookNow }) => {
             setLoading(true);
             setError(null);
             try {
-                const res = await fetch(`https://its-show-time-backend-production.up.railway.app/api/events/${id}`);
+                const res = await fetch(`https://show-time-backend-production.up.railway.app/api/events/${id}`);
                 if (!res.ok) {
                     throw new Error('Failed to load event details');
                 }
@@ -198,7 +198,7 @@ const EventDetails = ({ onBookNow }) => {
                 if (firstDateId) {
                     try {
                         const availRes = await fetch(
-                            `https://its-show-time-backend-production.up.railway.app/api/bookings/event/${full.id}/zone-availability?eventDateId=${encodeURIComponent(firstDateId)}`
+                            `https://show-time-backend-production.up.railway.app/api/bookings/event/${full.id}/zone-availability?eventDateId=${encodeURIComponent(firstDateId)}`
                         );
                         if (availRes.ok) {
                             const avail = await availRes.json();
@@ -230,7 +230,7 @@ const EventDetails = ({ onBookNow }) => {
     useEffect(() => {
         const loadOtherEvents = async () => {
             try {
-                const res = await fetch('https://its-show-time-backend-production.up.railway.app/api/events');
+                const res = await fetch('https://show-time-backend-production.up.railway.app/api/events');
                 if (!res.ok) {
                     throw new Error('Failed to load events');
                 }

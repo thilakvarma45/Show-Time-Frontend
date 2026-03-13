@@ -19,7 +19,7 @@ const BookingDetails = ({ item, owner, onBack }) => {
 
       try {
         const token = localStorage.getItem('token');
-        const res = await fetch(`https://its-show-time-backend-production.up.railway.app/api/events/${item.id}`, {
+        const res = await fetch(`https://show-time-backend-production.up.railway.app/api/events/${item.id}`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         if (!res.ok) {
@@ -69,8 +69,8 @@ const BookingDetails = ({ item, owner, onBack }) => {
         const isMovie = item.type === 'movie';
         const idToUse = isMovie ? (item.tmdbMovieId ?? item.id) : item.id;
 
-        const analyticsUrl = `https://its-show-time-backend-production.up.railway.app/api/analytics/${isMovie ? 'movie' : 'event'}/${idToUse}${item.ownerId ? `?ownerId=${item.ownerId}` : (owner?.id ? `?ownerId=${owner.id}` : '')}`;
-        const bookingsUrl = `https://its-show-time-backend-production.up.railway.app/api/bookings/${isMovie ? 'movie' : 'event'}/${idToUse}${item.ownerId ? `?ownerId=${item.ownerId}` : (owner?.id ? `?ownerId=${owner.id}` : '')}`;
+        const analyticsUrl = `https://show-time-backend-production.up.railway.app/api/analytics/${isMovie ? 'movie' : 'event'}/${idToUse}${item.ownerId ? `?ownerId=${item.ownerId}` : (owner?.id ? `?ownerId=${owner.id}` : '')}`;
+        const bookingsUrl = `https://show-time-backend-production.up.railway.app/api/bookings/${isMovie ? 'movie' : 'event'}/${idToUse}${item.ownerId ? `?ownerId=${item.ownerId}` : (owner?.id ? `?ownerId=${owner.id}` : '')}`;
 
         // Fetch Analytics and Bookings in parallel
         const [analyticsRes, bookingsRes] = await Promise.all([

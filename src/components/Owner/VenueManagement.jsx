@@ -47,7 +47,7 @@ const VenueManagement = ({ owner }) => {
           return;
         }
         const token = localStorage.getItem('token');
-        const res = await fetch(`https://its-show-time-backend-production.up.railway.app/api/venues/owner/${owner.id}`, {
+        const res = await fetch(`https://show-time-backend-production.up.railway.app/api/venues/owner/${owner.id}`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -106,8 +106,8 @@ const VenueManagement = ({ owner }) => {
       const token = localStorage.getItem('token');
       const isEditing = Boolean(editingVenueId);
       const url = isEditing
-        ? `https://its-show-time-backend-production.up.railway.app/api/venues/${editingVenueId}`
-        : 'https://its-show-time-backend-production.up.railway.app/api/venues';
+        ? `https://show-time-backend-production.up.railway.app/api/venues/${editingVenueId}`
+        : 'https://show-time-backend-production.up.railway.app/api/venues';
 
       const res = await fetch(url, {
         method: isEditing ? 'PUT' : 'POST',
@@ -167,7 +167,7 @@ const VenueManagement = ({ owner }) => {
     setDeletingVenue(true);
     try {
       const res = await fetch(
-        `https://its-show-time-backend-production.up.railway.app/api/venues/${confirmDeleteVenueId}${owner?.id ? `?ownerId=${owner.id}` : ''}`,
+        `https://show-time-backend-production.up.railway.app/api/venues/${confirmDeleteVenueId}${owner?.id ? `?ownerId=${owner.id}` : ''}`,
         {
           method: 'DELETE',
           headers: {

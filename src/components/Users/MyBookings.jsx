@@ -20,7 +20,7 @@ const MyBookings = ({ user, onBack }) => {
           return;
         }
         const token = localStorage.getItem('token');
-        const res = await fetch(`https://its-show-time-backend-production.up.railway.app/api/bookings/user/${user.id}`, {
+        const res = await fetch(`https://show-time-backend-production.up.railway.app/api/bookings/user/${user.id}`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         if (!res.ok) {
@@ -136,7 +136,7 @@ const MyBookings = ({ user, onBack }) => {
       // Simulate network delay for UX
       await new Promise(resolve => setTimeout(resolve, 1500));
 
-      const res = await fetch(`https://its-show-time-backend-production.up.railway.app/api/bookings/${selectedBooking.id}/cancel`, {
+      const res = await fetch(`https://show-time-backend-production.up.railway.app/api/bookings/${selectedBooking.id}/cancel`, {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}` }
       });

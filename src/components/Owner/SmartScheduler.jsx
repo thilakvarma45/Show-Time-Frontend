@@ -101,7 +101,7 @@ const SmartScheduler = ({ owner }) => {
           return;
         }
         const token = localStorage.getItem('token');
-        const res = await fetch(`https://its-show-time-backend-production.up.railway.app/api/venues/owner/${owner.id}`, {
+        const res = await fetch(`https://show-time-backend-production.up.railway.app/api/venues/owner/${owner.id}`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -227,7 +227,7 @@ const SmartScheduler = ({ owner }) => {
       };
 
       const token = localStorage.getItem('token');
-      const res = await fetch('https://its-show-time-backend-production.up.railway.app/api/schedules', {
+      const res = await fetch('https://show-time-backend-production.up.railway.app/api/schedules', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -291,7 +291,7 @@ const SmartScheduler = ({ owner }) => {
       formData.append('image', eventImageFile);
 
       const token = localStorage.getItem('token');
-      const response = await fetch('https://its-show-time-backend-production.up.railway.app/api/upload/event', {
+      const response = await fetch('https://show-time-backend-production.up.railway.app/api/upload/event', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -304,7 +304,7 @@ const SmartScheduler = ({ owner }) => {
       }
 
       const data = await response.json();
-      return `https://its-show-time-backend-production.up.railway.app${data.imageUrl}`;
+      return `https://show-time-backend-production.up.railway.app${data.imageUrl}`;
     } catch (error) {
       console.error('Error uploading image:', error);
       toast.error('Failed to upload image');
@@ -436,7 +436,7 @@ const SmartScheduler = ({ owner }) => {
       };
 
       const token = localStorage.getItem('token');
-      const response = await fetch('https://its-show-time-backend-production.up.railway.app/api/events', {
+      const response = await fetch('https://show-time-backend-production.up.railway.app/api/events', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

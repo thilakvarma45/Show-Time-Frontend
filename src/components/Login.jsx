@@ -23,6 +23,7 @@ const Login = ({ onAuthSuccess }) => {
   const [isPhone, setIsPhone] = useState(false);
   const [isEmail, setIsEmail] = useState(false);
   const [confirmationResult, setConfirmationResult] = useState(null);
+  const API_BASE = 'https://show-time-backend-production.up.railway.app';
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -58,7 +59,7 @@ const Login = ({ onAuthSuccess }) => {
 
     try {
       // Try google-login first (Passwordless / Trusted)
-      let res = await fetch('https://its-show-time-backend-production.up.railway.app/api/auth/google-login', {
+      let res = await fetch(`${API_BASE}/api/auth/google-login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, uid }),
@@ -100,7 +101,7 @@ const Login = ({ onAuthSuccess }) => {
     try {
       if (!confirmationResult) {
         // Step 1: Send OTP via Backend
-        const res = await fetch('https://its-show-time-backend-production.up.railway.app/api/auth/send-sms-otp', {
+        const res = await fetch(`${API_BASE}/api/auth/send-sms-otp`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ phone: formData.identifier })
@@ -115,7 +116,7 @@ const Login = ({ onAuthSuccess }) => {
         setSubmitting(false);
       } else {
         // Step 2: Verify OTP via Backend
-        const res = await fetch('https://its-show-time-backend-production.up.railway.app/api/auth/verify-sms-otp', {
+        const res = await fetch(`${API_BASE}/api/auth/verify-sms-otp`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ phone: formData.identifier, otp: formData.otp })
@@ -130,7 +131,7 @@ const Login = ({ onAuthSuccess }) => {
 
         // Try login using phone number as password
         const loginPayload = { email: dummyEmail, password: formData.identifier };
-        const loginRes = await fetch('https://its-show-time-backend-production.up.railway.app/api/auth/login', {
+        const loginRes = await fetch(`${API_BASE}/api/auth/login`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(loginPayload),
@@ -179,7 +180,7 @@ const Login = ({ onAuthSuccess }) => {
       }
 
       // 3. Fallback: Traditional Local Login
-      const res = await fetch('https://its-show-time-backend-production.up.railway.app/api/auth/login', {
+      const res = await fetch(`${API_BASE}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
