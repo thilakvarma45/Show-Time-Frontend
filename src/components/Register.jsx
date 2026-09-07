@@ -89,7 +89,7 @@ const Register = ({ onAuthSuccess }) => {
   };
 
   // Backend registration and login
-  const API_BASE = 'https://show-time-backend-production.up.railway.app';
+  const API_BASE = 'https://show-time-backend-production-5dff.up.railway.app';
 
   const backendRegisterAndLogin = async (payload) => {
     // 1. Register
