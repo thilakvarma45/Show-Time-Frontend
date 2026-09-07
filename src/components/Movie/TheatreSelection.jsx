@@ -274,7 +274,7 @@ const TheatreSelection = ({ onTimeSelect, selectedShow, movieId }) => {
             placeholder="Search theatres by name or location..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-12 pr-4 py-3 bg-white border border-slate-200 rounded-lg text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-sm"
+            className="w-full pl-12 pr-4 py-3 bg-white border border-slate-200 rounded-lg text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
           />
         </div>
       </motion.div>
@@ -369,5 +369,3 @@ const TheatreSelection = ({ onTimeSelect, selectedShow, movieId }) => {
 };
 
 export default TheatreSelection;
-
-

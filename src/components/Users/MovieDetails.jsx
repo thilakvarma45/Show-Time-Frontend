@@ -173,7 +173,7 @@ const MovieDetails = ({ onBookNow }) => {
 
       try {
         // Check if this movie has any shows scheduled
-        const res = await fetch('https://show-time-backend-production-5dff.up.railway.app/api/shows/summary');
+      const res = await fetch('https://show-time-backend-production-5dff.up.railway.app/api/shows/summary');
         if (!res.ok) {
           throw new Error('Failed to load shows');
         }
