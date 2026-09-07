@@ -31,7 +31,7 @@ const TheatreSelection = ({ onTimeSelect, selectedShow, movieId }) => {
   useEffect(() => {
     const loadAllDates = async () => {
       try {
-        const res = await fetch('https://show-time-backend-production.up.railway.app/api/venues');
+        const res = await fetch('https://show-time-backend-production-5dff.up.railway.app/api/venues');
         if (!res.ok) return;
 
         const venues = await res.json();
@@ -48,8 +48,8 @@ const TheatreSelection = ({ onTimeSelect, selectedShow, movieId }) => {
               theatreVenues.map(async (venue) => {
                 try {
                   const url = movieId
-                    ? `https://show-time-backend-production.up.railway.app/api/shows/venue/${venue.id}?date=${date.fullDate}&movieId=${movieId}`
-                    : `https://show-time-backend-production.up.railway.app/api/shows/venue/${venue.id}?date=${date.fullDate}`;
+                    ? `https://show-time-backend-production-5dff.up.railway.app/api/shows/venue/${venue.id}?date=${date.fullDate}&movieId=${movieId}`
+                    : `https://show-time-backend-production-5dff.up.railway.app/api/shows/venue/${venue.id}?date=${date.fullDate}`;
 
                   const showRes = await fetch(url);
                   if (!showRes.ok) return false;
@@ -82,7 +82,7 @@ const TheatreSelection = ({ onTimeSelect, selectedShow, movieId }) => {
   useEffect(() => {
     const loadTheatres = async () => {
       try {
-        const res = await fetch('https://show-time-backend-production.up.railway.app/api/venues');
+        const res = await fetch('https://show-time-backend-production-5dff.up.railway.app/api/venues');
         if (!res.ok) {
           throw new Error('Failed to load venues');
         }
@@ -100,8 +100,8 @@ const TheatreSelection = ({ onTimeSelect, selectedShow, movieId }) => {
           theatreVenues.map(async (venue) => {
             try {
               const url = movieId
-                ? `https://show-time-backend-production.up.railway.app/api/shows/venue/${venue.id}?date=${isoDate}&movieId=${movieId}`
-                : `https://show-time-backend-production.up.railway.app/api/shows/venue/${venue.id}?date=${isoDate}`;
+                ? `https://show-time-backend-production-5dff.up.railway.app/api/shows/venue/${venue.id}?date=${isoDate}&movieId=${movieId}`
+                : `https://show-time-backend-production-5dff.up.railway.app/api/shows/venue/${venue.id}?date=${isoDate}`;
 
               const showRes = await fetch(url);
               if (!showRes.ok) {
@@ -274,7 +274,7 @@ const TheatreSelection = ({ onTimeSelect, selectedShow, movieId }) => {
             placeholder="Search theatres by name or location..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-12 pr-4 py-3 bg-white border border-slate-200 rounded-lg text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-sm"
+            className="w-full pl-12 pr-4 py-3 bg-white border border-slate-200 rounded-lg text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
           />
         </div>
       </motion.div>
@@ -369,5 +369,3 @@ const TheatreSelection = ({ onTimeSelect, selectedShow, movieId }) => {
 };
 
 export default TheatreSelection;
-
-
