@@ -82,7 +82,7 @@ const AppContent = () => {
   const [wishlist, setWishlist] = useState([]);
 
   // Load wishlist from backend
-  const API_BASE = 'https://show-time-backend-production.up.railway.app';
+  const API_BASE = 'https://show-time-backend-production-5dff.up.railway.app';
 
   useEffect(() => {
     if (user?.id) {

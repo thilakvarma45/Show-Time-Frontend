@@ -23,7 +23,7 @@ const Login = ({ onAuthSuccess }) => {
   const [isPhone, setIsPhone] = useState(false);
   const [isEmail, setIsEmail] = useState(false);
   const [confirmationResult, setConfirmationResult] = useState(null);
-  const API_BASE = 'https://show-time-backend-production.up.railway.app';
+  const API_BASE = 'https://show-time-backend-production-5dff.up.railway.app';
 
   useEffect(() => {
     const handleMouseMove = (e) => {
